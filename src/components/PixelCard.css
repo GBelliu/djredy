@@ -1,0 +1,27 @@
+.pixel-card {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border: 1px solid var(--c-line-dark);
+  background: radial-gradient(120% 80% at 50% 100%, #1f1f1f, var(--c-ink) 70%);
+  transition: border-color 0.4s;
+}
+
+.pixel-card:hover,
+.pixel-card:focus-within {
+  border-color: rgb(255 255 255 / 0.5);
+}
+
+.pixel-card__canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: var(--z-below);
+  opacity: 0.55;
+}
+
+.pixel-card__content {
+  position: relative;
+  height: 100%;
+}

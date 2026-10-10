@@ -1,0 +1,110 @@
+.about {
+  position: relative;
+  background: var(--c-ink);
+  padding-top: calc(var(--header-h) + 8vh);
+  overflow: hidden;
+}
+
+.about__inner {
+  width: min(100% - var(--gutter) * 2, 1100px);
+  margin-inline: auto;
+  display: grid;
+  justify-items: center;
+  gap: clamp(2.5rem, 8vh, 6rem);
+  text-align: center;
+}
+
+.about__title {
+  font-size: var(--fs-h2);
+  white-space: nowrap;
+}
+
+.about__quote {
+  max-width: 24ch;
+  font-family: var(--f-label);
+  font-size: var(--fs-lead);
+  font-weight: 500;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.about__stats {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-block: 1px solid var(--c-line-dark);
+}
+
+.about__stat {
+  display: grid;
+  gap: 0.4rem;
+  padding: clamp(1rem, 3vw, 2rem) 0.5rem;
+  color: var(--c-mute);
+}
+
+.about__stat + .about__stat {
+  border-left: 1px solid var(--c-line-dark);
+}
+
+.about__stat-number {
+  font-size: clamp(2.6rem, 1.5rem + 4vw, 5.5rem);
+  color: var(--c-white);
+}
+
+.about__figure {
+  position: relative;
+  width: min(560px, 86vw);
+  margin: clamp(3rem, 10vh, 7rem) auto 0;
+  aspect-ratio: 1400 / 1750;
+  max-height: 90vh;
+}
+
+.about__silhouette,
+.about__photo {
+  position: absolute;
+  inset: 0;
+}
+
+.about__silhouette img,
+.about__photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: bottom;
+}
+
+/* Contorno de linha branca, como a ilustração da referência */
+.about__silhouette img {
+  filter: brightness(0) drop-shadow(0 0 1px #fff) drop-shadow(0 0 1px #fff) drop-shadow(0 0 12px rgb(255 255 255 / 0.35));
+}
+
+.about__photo img {
+  filter: grayscale(1) contrast(1.2) brightness(0.9);
+}
+
+.about__scan {
+  position: absolute;
+  left: -10%;
+  right: -10%;
+  height: 2px;
+  background: #fff;
+  box-shadow: 0 0 24px 4px rgb(255 255 255 / 0.6);
+}
+
+.about__figure::after {
+  content: '';
+  position: absolute;
+  inset: auto 0 0;
+  height: 25%;
+  background: linear-gradient(transparent, var(--c-ink));
+}
+
+@media (max-width: 600px) {
+  .about__title {
+    white-space: normal;
+  }
+
+  .about__stat-number {
+    font-size: 2.2rem;
+  }
+}

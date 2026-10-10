@@ -1,0 +1,140 @@
+.gallery {
+  position: relative;
+  background: var(--c-ink);
+  overflow: hidden;
+}
+
+.gallery__track {
+  display: flex;
+  align-items: center;
+  gap: clamp(1.5rem, 4vw, 4rem);
+  width: max-content;
+  height: 100vh;
+  height: 100svh;
+  padding-inline: var(--gutter);
+}
+
+.gallery__intro {
+  width: min(80vw, 520px);
+  display: grid;
+  gap: 1.4rem;
+}
+
+.gallery__title {
+  font-size: clamp(3.4rem, 1.5rem + 7vw, 9rem);
+}
+
+.gallery__hint {
+  color: var(--c-mute);
+}
+
+.gallery__item {
+  display: grid;
+  gap: 0.8rem;
+}
+
+.gallery__frame {
+  height: 64vh;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  border-radius: 4px;
+}
+
+.gallery__item--1 {
+  align-self: start;
+  margin-top: 12vh;
+}
+
+.gallery__item--1 .gallery__frame {
+  height: 52vh;
+}
+
+.gallery__item--2 {
+  align-self: end;
+  margin-bottom: 10vh;
+}
+
+.gallery__item--2 .gallery__frame {
+  height: 46vh;
+  aspect-ratio: 4 / 5;
+}
+
+.gallery__frame picture,
+.gallery__frame img {
+  width: 100%;
+  height: 100%;
+}
+
+.gallery__frame img {
+  object-fit: cover;
+  scale: 1.3;
+  filter: grayscale(1) contrast(1.1);
+  transition:
+    filter 0.7s var(--ease-out),
+    scale 0.9s var(--ease-out);
+}
+
+.gallery__frame:hover img {
+  filter: grayscale(0) contrast(1);
+  scale: 1.38;
+}
+
+.gallery__caption {
+  display: flex;
+  gap: 1rem;
+  color: var(--c-mute);
+}
+
+.gallery__caption span {
+  color: var(--c-white);
+}
+
+.gallery__progress {
+  position: absolute;
+  inset: auto var(--gutter) clamp(16px, 4vh, 40px);
+  height: 1px;
+  background: var(--c-line-dark);
+}
+
+.gallery__progress span {
+  display: block;
+  height: 100%;
+  background: var(--c-white);
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+@media (max-width: 767px), (prefers-reduced-motion: reduce) {
+  .gallery__track {
+    width: auto;
+    height: auto;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding-block: 5rem;
+    align-items: flex-start;
+  }
+
+  .gallery__intro,
+  .gallery__item {
+    flex: none;
+    scroll-snap-align: start;
+  }
+
+  .gallery__item,
+  .gallery__item--1,
+  .gallery__item--2 {
+    align-self: auto;
+    margin: 0;
+  }
+
+  .gallery__frame,
+  .gallery__item--1 .gallery__frame,
+  .gallery__item--2 .gallery__frame {
+    height: 60vh;
+    aspect-ratio: 3 / 4;
+  }
+
+  .gallery__progress {
+    display: none;
+  }
+}

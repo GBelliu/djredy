@@ -1,0 +1,49 @@
+.smoke {
+  position: relative;
+  height: 260vh;
+  background: var(--c-ink);
+}
+
+.smoke__sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100svh;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+}
+
+.smoke__canvas,
+.smoke__fallback {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.smoke__fallback,
+.smoke.is-fallback .smoke__sticky {
+  --reveal: 0%;
+  background: linear-gradient(
+    to top,
+    var(--c-paper) calc(var(--reveal) * 1.2 - 20%),
+    var(--c-ink) calc(var(--reveal) * 1.2 + 10%)
+  );
+}
+
+.smoke__text {
+  position: relative;
+  z-index: var(--z-base);
+  display: grid;
+  justify-items: center;
+  text-align: center;
+  font-size: clamp(2.4rem, 1rem + 7vw, 9rem);
+  color: #fff;
+  mix-blend-mode: difference;
+}
+
+.smoke__word {
+  display: block;
+  white-space: nowrap;
+}

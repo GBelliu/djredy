@@ -1,0 +1,68 @@
+.preloader {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-preloader);
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  grid-template-columns: minmax(0, 1fr);
+  padding: var(--gutter);
+  background: var(--c-ink);
+  color: var(--c-white);
+}
+
+.preloader__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--c-mute);
+}
+
+.preloader__logo {
+  width: 64px;
+}
+
+.preloader__log {
+  align-self: center;
+  display: grid;
+  gap: 0.5em;
+  color: #bdbdbd;
+  font-size: clamp(0.7rem, 0.6rem + 0.4vw, 0.95rem);
+}
+
+.preloader__caret {
+  color: var(--c-dim);
+}
+
+.preloader__cursor {
+  animation: blink 0.8s steps(1) infinite;
+}
+
+.preloader__bottom {
+  display: grid;
+  gap: 1rem;
+}
+
+.preloader__count {
+  font-size: clamp(5rem, 3rem + 14vw, 16rem);
+  line-height: 0.8;
+  justify-self: end;
+}
+
+.preloader__bar {
+  height: 1px;
+  background: var(--c-line-dark);
+  overflow: hidden;
+}
+
+.preloader__bar span {
+  display: block;
+  height: 100%;
+  background: var(--c-white);
+  transform-origin: left;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}

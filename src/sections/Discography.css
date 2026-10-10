@@ -1,0 +1,269 @@
+.disco {
+  position: relative;
+  background: var(--grid-light), var(--c-paper);
+  color: var(--c-ink);
+}
+
+.disco__stage {
+  height: 100vh;
+  height: 100svh;
+  min-height: 600px;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  justify-items: center;
+  padding-top: calc(var(--header-h) * 0.7);
+  overflow: hidden;
+  perspective: 1200px;
+}
+
+/* Título 3D extrudado */
+.disco__title {
+  font-size: clamp(2.2rem, 0.8rem + 6vw, 6.4rem);
+  transform: rotateX(28deg) rotateZ(4deg);
+  transform-origin: 50% 100%;
+  text-shadow:
+    0 1px 0 #555,
+    0 2px 0 #4a4a4a,
+    0 3px 0 #404040,
+    0 4px 0 #363636,
+    0 5px 0 #2c2c2c,
+    0 6px 0 #222,
+    0 18px 22px rgb(0 0 0 / 0.25);
+  z-index: var(--z-raised);
+}
+
+.disco__deck {
+  position: relative;
+  width: 100%;
+  display: grid;
+  place-items: center;
+  perspective: 1600px;
+}
+
+.disco__tilt {
+  position: relative;
+  width: min(920px, 90vw);
+  height: min(500px, 60vh);
+  margin-top: -6vh;
+  transform: rotateX(26deg) rotateZ(-7deg);
+  transform-style: preserve-3d;
+}
+
+.disco-card {
+  --shade: 0;
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: clamp(0.6rem, 1.5vw, 1.2rem);
+  padding: clamp(1rem, 2.4vw, 2rem);
+  padding-top: calc(clamp(1rem, 2.4vw, 2rem) + 12px);
+  border-radius: 18px;
+  background: linear-gradient(160deg, #ffffff, #dcdcdc 70%, #cfcfcf);
+  box-shadow:
+    0 2px 0 #a9a9a9,
+    0 30px 60px -20px rgb(0 0 0 / 0.45);
+  transform-origin: 50% 0;
+  overflow: hidden;
+}
+
+/* Faixa de cor do álbum (aparece como as bordas empilhadas da referência) */
+.disco-card::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto;
+  height: 12px;
+  background: var(--accent);
+}
+
+.disco-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: #000;
+  opacity: var(--shade);
+  pointer-events: none;
+}
+
+.disco-card__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  border-bottom: 1px solid rgb(0 0 0 / 0.15);
+  padding-bottom: 0.5rem;
+}
+
+.disco-card__title {
+  font-size: clamp(1.1rem, 0.6rem + 2.2vw, 2.4rem);
+  text-shadow: 0 3px 0 rgb(0 0 0 / 0.25);
+}
+
+.disco-card__year {
+  font-size: clamp(0.9rem, 0.6rem + 1.2vw, 1.6rem);
+}
+
+.disco-card__body {
+  display: grid;
+  grid-template-columns: 1fr minmax(0, 0.95fr) 1fr;
+  gap: clamp(0.8rem, 2vw, 1.6rem);
+  min-height: 0;
+}
+
+.disco-card__col {
+  display: grid;
+  align-content: start;
+  gap: 0.5rem;
+  font-family: var(--f-label);
+  font-size: clamp(0.72rem, 0.6rem + 0.35vw, 0.95rem);
+  line-height: 1.35;
+}
+
+.disco-card__label {
+  font-size: clamp(0.75rem, 0.6rem + 0.5vw, 1.1rem);
+}
+
+.disco-card__tracks {
+  list-style: none;
+  display: grid;
+  gap: 0.15rem;
+}
+
+.disco-card__cover {
+  min-height: 0;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 10px 24px rgb(0 0 0 / 0.3);
+}
+
+.disco-card__cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 15%;
+  transition: filter 0.6s;
+}
+
+@media (max-width: 767px) {
+  .disco__tilt {
+    height: 62vh;
+    transform: rotateX(14deg) rotateZ(-3deg);
+  }
+
+  .disco-card__body {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr auto;
+  }
+
+  .disco-card__col--desc {
+    display: none;
+  }
+
+  .disco-card__cover {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .disco__stage {
+    height: auto;
+  }
+
+  .disco__tilt {
+    height: auto;
+    display: grid;
+    gap: 2rem;
+    transform: none;
+  }
+
+  .disco-card {
+    position: relative;
+    min-height: 420px;
+  }
+}
+
+.disco-card__meta {
+  display: flex;
+  gap: 1.2rem;
+  margin-top: 0.4rem;
+  color: #555;
+}
+
+.disco-card__meta dd {
+  color: var(--c-ink);
+  font-weight: 700;
+}
+
+.disco-card__listen {
+  justify-self: start;
+  margin-top: 0.4rem;
+  padding: 0.5em 1em;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  font-size: 0.68rem;
+  transition:
+    background-color 0.3s,
+    color 0.3s;
+}
+
+.disco-card__listen:hover {
+  background: var(--c-ink);
+  color: var(--c-white);
+}
+
+/* Mais lançamentos */
+.disco__more {
+  padding: clamp(4rem, 10vh, 7rem) var(--gutter);
+}
+
+.disco__more-head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid rgb(0 0 0 / 0.2);
+  padding-bottom: 1rem;
+}
+
+.disco__more-head h3 {
+  font-size: var(--fs-h3);
+}
+
+.disco__more-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 200px), 1fr));
+  gap: clamp(1rem, 2vw, 2rem);
+}
+
+.disco__more-item {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.disco__more-item picture {
+  aspect-ratio: 1;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 16px 30px -12px rgb(0 0 0 / 0.45);
+}
+
+.disco__more-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s var(--ease-out);
+}
+
+.disco__more-item:hover img {
+  transform: scale(1.06) rotate(-1.5deg);
+}
+
+.disco__more-item .t-display {
+  font-size: 1rem;
+}
+
+.disco__more-item .t-mono {
+  color: #666;
+}

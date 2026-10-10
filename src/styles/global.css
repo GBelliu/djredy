@@ -1,0 +1,223 @@
+@import 'lenis/dist/lenis.css';
+
+:root {
+  /* Cores */
+  --c-ink: #0a0a0a;
+  --c-ink-2: #141414;
+  --c-paper: #e9e9e9;
+  --c-white: #f4f4f4;
+  --c-mute: #8a8a8a;
+  --c-dim: #5c5c5c;
+  --c-line-dark: rgb(255 255 255 / 0.16);
+  --c-line-light: rgb(0 0 0 / 0.08);
+
+  /* Tipografia */
+  --f-display: 'Archivo', 'Arial Black', sans-serif;
+  --f-condensed: 'Anton', 'Impact', sans-serif;
+  --f-label: 'Oswald', 'Arial Narrow', sans-serif;
+  --f-mono: 'Courier Prime', 'Courier New', monospace;
+
+  --fs-mono: clamp(0.62rem, 0.55rem + 0.2vw, 0.78rem);
+  --fs-label: clamp(0.72rem, 0.65rem + 0.25vw, 0.9rem);
+  --fs-body: clamp(0.95rem, 0.85rem + 0.35vw, 1.15rem);
+  --fs-lead: clamp(1.3rem, 0.9rem + 1.8vw, 2.6rem);
+  --fs-h3: clamp(1.4rem, 1rem + 1.6vw, 2.4rem);
+  --fs-h2: clamp(2.6rem, 1.2rem + 6.5vw, 8rem);
+  --fs-mega: clamp(5rem, 1rem + 22vw, 26rem);
+
+  /* Escala de z-index */
+  --z-below: -1;
+  --z-base: 1;
+  --z-raised: 10;
+  --z-overlay: 20;
+  --z-header: 100;
+  --z-menu: 200;
+  --z-grain: 250;
+  --z-preloader: 300;
+  --z-cursor: 400;
+
+  /* Layout & movimento */
+  --gutter: clamp(16px, 5vw, 82px);
+  --header-h: clamp(64px, 9vw, 100px);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.76, 0, 0.24, 1);
+
+  --grid-light:
+    linear-gradient(var(--c-line-light) 1px, transparent 1px) 0 0 / 40px 40px,
+    linear-gradient(90deg, var(--c-line-light) 1px, transparent 1px) 0 0 / 40px 40px;
+
+  color-scheme: dark;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+html.is-loading,
+html.is-loading body {
+  overflow: hidden;
+}
+
+html.has-cursor,
+html.has-cursor * {
+  cursor: none !important;
+}
+
+body {
+  background: var(--c-ink);
+  color: var(--c-white);
+  font-family: var(--f-label);
+  font-size: var(--fs-body);
+  line-height: 1.5;
+  overflow-x: clip;
+}
+
+img,
+picture,
+svg,
+canvas,
+video {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+}
+
+ul {
+  list-style: none;
+}
+
+::selection {
+  background: var(--c-white);
+  color: var(--c-ink);
+}
+
+:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* ---------- Utilitários tipográficos ---------- */
+
+.t-display {
+  font-family: var(--f-display);
+  font-weight: 900;
+  font-stretch: 125%;
+  text-transform: uppercase;
+  line-height: 0.92;
+  letter-spacing: -0.01em;
+}
+
+.t-condensed {
+  font-family: var(--f-condensed);
+  text-transform: uppercase;
+  line-height: 0.85;
+}
+
+.t-label {
+  font-family: var(--f-label);
+  font-size: var(--fs-label);
+  font-weight: 400;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
+
+.t-mono {
+  font-family: var(--f-mono);
+  font-size: var(--fs-mono);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* Tipografia metálica cromada */
+.chrome {
+  background: linear-gradient(
+    180deg,
+    #ffffff 0%,
+    #d9d9d9 28%,
+    #7c7c7c 46%,
+    #1d1d1d 50%,
+    #8f8f8f 56%,
+    #f2f2f2 78%,
+    #9a9a9a 100%
+  );
+  background-size: 100% 220%;
+  background-position: 0 0;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  transition: background-position 1.2s var(--ease-out);
+}
+
+.chrome:hover {
+  background-position: 0 100%;
+}
+
+.chrome-outline {
+  color: transparent;
+  -webkit-text-stroke: 1.5px #e6e6e6;
+  filter: drop-shadow(0 0 18px rgb(255 255 255 / 0.15));
+}
+
+.section-label {
+  display: flex;
+  align-items: center;
+  gap: 0.9em;
+  color: var(--c-mute);
+}
+
+.section-label::before {
+  content: '';
+  width: 2.2em;
+  height: 1px;
+  background: currentColor;
+}
+
+/* Linhas de texto reveladas pelo GSAP */
+.line-mask {
+  display: block;
+  overflow: hidden;
+}
+
+.line-mask > * {
+  display: block;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}

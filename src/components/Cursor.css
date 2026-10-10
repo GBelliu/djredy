@@ -1,0 +1,60 @@
+.cursor {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-cursor);
+  pointer-events: none;
+  mix-blend-mode: difference;
+}
+
+.cursor__dot,
+.cursor__ring {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.cursor__dot.is-visible,
+.cursor__ring.is-visible {
+  opacity: 1;
+}
+
+.cursor__dot {
+  width: 6px;
+  height: 6px;
+  margin: -3px 0 0 -3px;
+  background: #fff;
+}
+
+.cursor__ring {
+  width: 36px;
+  height: 36px;
+  margin: -18px 0 0 -18px;
+  border: 1px solid #fff;
+  display: grid;
+  place-items: center;
+  transition:
+    opacity 0.3s,
+    scale 0.45s var(--ease-out),
+    background-color 0.3s;
+}
+
+.cursor__ring.is-hover {
+  scale: 1.9;
+  background-color: rgb(255 255 255 / 0.12);
+}
+
+.cursor__ring.is-down {
+  scale: 0.7;
+}
+
+.cursor__ring::after {
+  content: attr(data-label);
+  font-family: var(--f-mono);
+  font-size: 5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #fff;
+}

@@ -1,0 +1,31 @@
+.bands {
+  position: relative;
+  height: clamp(180px, 26vw, 360px);
+  background: linear-gradient(var(--c-paper) 50%, var(--c-ink) 50%);
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+}
+
+.band {
+  position: absolute;
+  left: -5%;
+  width: 110%;
+  padding-block: clamp(0.6rem, 1.4vw, 1.2rem);
+  font-size: clamp(1.4rem, 0.8rem + 3vw, 3.6rem);
+  line-height: 1;
+}
+
+.band--light {
+  rotate: 4deg;
+  background: var(--c-white);
+  color: var(--c-ink);
+  border-block: 2px solid var(--c-ink);
+}
+
+.band--dark {
+  rotate: -3deg;
+  background: var(--c-ink);
+  color: var(--c-white);
+  box-shadow: 0 20px 40px rgb(0 0 0 / 0.4);
+}
